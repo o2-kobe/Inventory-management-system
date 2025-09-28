@@ -1,10 +1,7 @@
 import { NavLink } from "react-router-dom";
-import {
-  MdOutlineDashboard,
-  MdOutlineSettings,
-  MdOutlineInventory2,
-} from "react-icons/md";
-import { HiOutlineClipboardDocument } from "react-icons/hi2";
+import { MdOutlineDashboard, MdOutlineSettings } from "react-icons/md";
+
+import RegionsRoute from "./RegionsRoute";
 
 const SideMenu = () => {
   return (
@@ -36,25 +33,14 @@ const SideMenu = () => {
             Dashboard
           </NavLink>
           <NavLink
-            to="/app/inventory"
+            to="/app/regions"
             className={({ isActive }) =>
               ` flex gap-1 items-center font-semibold px-3 py-2  ${
                 isActive ? "bg-gray-200 rounded-md" : ""
               }`
             }
           >
-            <MdOutlineInventory2 /> Inventory
-          </NavLink>
-          <NavLink
-            to="/app/provision"
-            className={({ isActive }) =>
-              ` flex gap-1 items-center font-semibold px-3 py-2  ${
-                isActive ? "bg-gray-200 rounded-md" : ""
-              }`
-            }
-          >
-            <HiOutlineClipboardDocument />
-            Provisions
+            <RegionsRoute />
           </NavLink>
         </div>
       </div>
