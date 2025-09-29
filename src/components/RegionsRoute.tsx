@@ -7,7 +7,10 @@ const RegionsRoute = () => {
   const [viewRegions, setViewRegions] = useState(false);
 
   return (
-    <div onClick={() => setViewRegions((r) => !r)}>
+    <div
+      className="font-semibold px-3 py-2"
+      onClick={() => setViewRegions((r) => !r)}
+    >
       <div className="flex items-center gap-2">
         {viewRegions ? <MdExpandMore /> : <FiMap />}Regions
       </div>
