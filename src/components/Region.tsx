@@ -8,56 +8,39 @@ const Region = () => {
   const { regionSlug } = useParams();
   const region = regionSlug ? getRegionBySlug(regionSlug) : undefined;
   const regionTitle = region?.regionName ?? "Unknown Region";
-  const superior = region?.courtTypes.find((c) =>
-    c.courtType.toLowerCase().includes("superior")
-  );
-  const circuit = region?.courtTypes.find((c) =>
-    c.courtType.toLowerCase().includes("circuit")
-  );
-  const district = region?.courtTypes.find((c) =>
-    c.courtType.toLowerCase().includes("district")
-  );
+  const availableTypes = region?.courtTypes ?? [];
 
   return (
     <div>
-      <h2 className="font-semibold text-4xl mb-3">{regionTitle}</h2>
+      <h2 className="font-semibold text-4xl mb-3">{regionTitle} Region</h2>
       <p>Select court type</p>
 
       <div className="flex items-center gap-10 mt-5">
-        <Link
-          to={`/app/regions/${regionSlug}/court-type/${superior?.id ?? 1}`}
-          className="border border-gray-300 shadow-md transition-all duration-[0.2s] hover:bg-gray-100 cursor-pointer rounded-md p-20 gap-4 flex flex-col items-center"
-        >
-          <p>
-            <FaLandmark size={40} />
-          </p>
-          <p>Superior Court</p>
-        </Link>
-
-        <Link
-          to={`/app/regions/${regionSlug}/court-type/${circuit?.id ?? 2}`}
-          className="border border-gray-300 shadow-md transition-all duration-[0.2s] hover:bg-gray-100 cursor-pointer rounded-md p-20 gap-4 flex flex-col items-center"
-        >
-          <p>
-            <MdAccountBalance size={40} />
-          </p>
-          <p>Circuit Court</p>
-        </Link>
-
-        <Link
-          to={`/app/regions/${regionSlug}/court-type/${district?.id ?? 3}`}
-          className="border border-gray-300 shadow-md transition-all duration-[0.2s] hover:bg-gray-100 cursor-pointer rounded-md p-20 gap-4 flex flex-col items-center"
-        >
-          <p>
-            <FaGavel size={40} />
-          </p>
-          <p>District Court</p>
-        </Link>
+        {availableTypes.map((ct) => {
+          const name = ct.courtType.toLowerCase();
+          const Icon = name.includes("superior")
+            ? FaLandmark
+            : name.includes("circuit")
+            ? MdAccountBalance
+            : FaGavel;
+          return (
+            <Link
+              key={ct.id}
+              to={`/app/regions/${regionSlug}/court-type/${ct.id}`}
+              className="border border-gray-300 shadow-md transition-all duration-[0.2s] hover:bg-gray-100 cursor-pointer rounded-md p-20 gap-4 flex flex-col items-center"
+            >
+              <p>
+                <Icon size={40} />
+              </p>
+              <p>{ct.courtType}</p>
+            </Link>
+          );
+        })}
       </div>
 
-      <p>Or select departments</p>
+      <p className="my-4">Or select departments</p>
 
-      <div className="border border-gray-300 shadow-md hover:bg-gray-200 cursor-pointer rounded-md p-20 gap-4 flex flex-col items-center">
+      <div className="border w-[264px] border-gray-300 shadow-md hover:bg-gray-200 cursor-pointer rounded-md p-20 gap-4 flex flex-col items-center mb-10">
         <p>
           <FaBuilding size={40} />
         </p>
