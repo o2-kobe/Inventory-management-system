@@ -81,3 +81,15 @@ export function getCourtById(
   if (!region || !courtType) return undefined;
   return { region, courtType, court: ref.court };
 }
+
+export function getCourtByIds(
+  regionId: number,
+  courtTypeId: number,
+  courtId: number
+): { region: Region; courtType: CourtType; court: Court } | undefined {
+  const region = regionIdToRegion.get(regionId);
+  const ct = regionIdToCourtTypeIdToCourtType.get(regionId)?.get(courtTypeId);
+  const court = ct?.courts.find((c) => c.id === courtId);
+  if (!region || !ct || !court) return undefined;
+  return { region, courtType: ct, court };
+}
