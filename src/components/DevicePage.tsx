@@ -1,11 +1,19 @@
 import { useParams } from "react-router-dom";
-import { getCourtById } from "../dataRepo";
+import { getCourtByIds, getCourtTypeByIds, getRegionBySlug } from "../dataRepo";
 
 const DevicePage = () => {
-  const { courtId } = useParams();
-  const info = courtId ? getCourtById(Number(courtId)) : undefined;
+  const { regionSlug, courtTypeId, courtId } = useParams();
+  const region = regionSlug ? getRegionBySlug(regionSlug) : undefined;
+  const courtType =
+    region && courtTypeId
+      ? getCourtTypeByIds(region.id, Number(courtTypeId))
+      : undefined;
+  const info =
+    region && courtTypeId && courtId
+      ? getCourtByIds(region.id, Number(courtTypeId), Number(courtId))
+      : undefined;
   const courtName = info?.court.courtName ?? "Court";
-  const regionName = info?.region.regionName ?? "Region";
+  const regionName = region?.regionName ?? info?.region.regionName ?? "Region";
   const devices = info?.court.devices ?? [];
 
   return (
@@ -13,6 +21,7 @@ const DevicePage = () => {
       <h3 className="font-semibold text-4xl mb-2">{courtName}</h3>
       <p>
         Manage devices within {courtName} ({regionName})
+        {courtType ? ` • ${courtType.courtType}` : ""}
       </p>
 
       <div className="mt-7">
