@@ -1,7 +1,8 @@
 import { FiMap } from "react-icons/fi";
 import { MdExpandMore } from "react-icons/md";
-import { regions } from "../data";
+import { regionsData } from "../data";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const RegionsRoute = () => {
   const [viewRegions, setViewRegions] = useState(false);
@@ -11,19 +12,23 @@ const RegionsRoute = () => {
       className="font-semibold px-3 py-2"
       onClick={() => setViewRegions((r) => !r)}
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 mb-1 cursor-pointer">
         {viewRegions ? <MdExpandMore /> : <FiMap />}Regions
       </div>
 
       <div
         className={`${
           viewRegions ? "" : "hidden"
-        } flex flex-col gap-2 items-start ml-5`}
+        } flex flex-col gap-2 items-start ml-6`}
       >
-        {regions.map((region, i) => (
-          <p className="" key={i}>
-            {region}
-          </p>
+        {regionsData.map((region, i) => (
+          <Link
+            to={`/app/regions/${region.slug}`}
+            className="cursor-pointer"
+            key={i}
+          >
+            {region.regionName}
+          </Link>
         ))}
       </div>
     </div>
