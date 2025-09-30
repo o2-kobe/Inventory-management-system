@@ -10,7 +10,7 @@ const CourtType = () => {
       : undefined;
 
   const heading = courtType
-    ? `${courtType.courtType} in ${region?.regionName ?? "Region"}`
+    ? `${courtType.courtType}s in ${region?.regionName ?? "Region"}`
     : "Courts";
 
   return (
@@ -23,7 +23,7 @@ const CourtType = () => {
           <li key={court.id} className="hover:underline">
             <Link
               className="cursor-pointer"
-              to={`/app/regions/${regionSlug}/court/${court.id}/devices`}
+              to={`/app/regions/${regionSlug}/court-type/${courtTypeId}/court/${court.id}/devices`}
             >
               {court.courtName}
             </Link>
