@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@layer components {
+  .thead {
+    @apply py-3 px-4;
+  }
+
+  .tdata {
+    @apply py-3 px-4 border text-center;
+  }
+}

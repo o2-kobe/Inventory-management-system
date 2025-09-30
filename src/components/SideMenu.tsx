@@ -5,7 +5,7 @@ import RegionsRoute from "./RegionsRoute";
 
 const SideMenu = () => {
   return (
-    <div className="px-4 py-8 border border-r-gray-300 shadow-md border-y-white h-full flex flex-col">
+    <div className="px-4 py-8 border border-r-gray-300 shadow-md border-y-white min-h-screen flex flex-col">
       <div>
         <div className="flex flex-col justify-center items-center gap-1">
           <div className="bg-white w-[80px]">
