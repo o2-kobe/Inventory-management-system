@@ -22,7 +22,7 @@ const App = () => {
               element={<CourtType />}
             />
             <Route
-              path="/app/regions/:regionSlug/court/:courtId/devices"
+              path="/app/regions/:regionSlug/court-type/:courtTypeId/court/:courtId/devices"
               element={<DevicePage />}
             />
 
