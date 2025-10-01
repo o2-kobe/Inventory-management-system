@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { getCourtByIds, getCourtTypeByIds, getRegionBySlug } from "../dataRepo";
 
+import Table from "./Table";
+
 const DevicePage = () => {
   const { regionSlug, courtTypeId, courtId } = useParams();
   const region = regionSlug ? getRegionBySlug(regionSlug) : undefined;
@@ -18,33 +20,23 @@ const DevicePage = () => {
 
   return (
     <div>
-      <h3 className="font-semibold text-4xl mb-2">{courtName}</h3>
-      <p>
-        Manage devices within {courtName} ({regionName})
-        {courtType ? ` • ${courtType.courtType}` : ""}
-      </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="font-semibold text-4xl mb-2">{courtName}</h3>
+          <p>
+            Manage devices within {courtName} ({regionName})
+            {courtType ? ` • ${courtType.courtType}` : ""}
+          </p>
+        </div>
 
-      <div className="mt-7">
-        <table className="w-full border">
-          <thead className="bg-gray-200 text-center text-gray-600 uppercase text-sm">
-            <th className="thead">Brand</th>
-            <th className="thead">Serial Number</th>
-            <th className="thead">Embossment Number</th>
-            <th className="thead">Quantity</th>
-          </thead>
-
-          <tbody>
-            {devices.map((d) => (
-              <tr key={d.id} className="hover:bg-gray-100 relative">
-                <td className="tdata">{d.brand}</td>
-                <td className="tdata">{d.serialNumber}</td>
-                <td className="tdata">{d.embosment}</td>
-                <td className="tdata">{d.quantity}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div>
+          <button className="px-4 cursor-pointer text-sm transition-colors duration-[0.2s] hover:bg-green-700 py-2 rounded-md bg-green-800 text-white">
+            Add new Equipment
+          </button>
+        </div>
       </div>
+
+      <Table devices={devices} />
     </div>
   );
 };
