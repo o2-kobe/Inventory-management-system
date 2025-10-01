@@ -2,10 +2,14 @@
 
 @layer components {
   .thead {
-    @apply py-3 px-4;
+    @apply py-3 px-4 bg-gray-200 border border-gray-300;
   }
 
   .tdata {
-    @apply py-3 px-4 border text-center;
+    @apply py-3 px-4 border border-gray-300 text-center;
   }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
