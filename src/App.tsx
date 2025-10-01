@@ -7,6 +7,8 @@ import Regions from "./pages/Regions";
 import Region from "./components/Region";
 import CourtType from "./components/CourtType";
 import DevicePage from "./components/DevicePage";
+import Departments from "./components/Departments";
+import DepartmentDevices from "./components/DepartmentDevices";
 
 const App = () => {
   return (
@@ -24,6 +26,14 @@ const App = () => {
             <Route
               path="/app/regions/:regionSlug/court-type/:courtTypeId/court/:courtId/devices"
               element={<DevicePage />}
+            />
+            <Route
+              path="/app/regions/:regionSlug/departments"
+              element={<Departments />}
+            />
+            <Route
+              path="/app/regions/:regionSlug/departments/:departmentId/devices"
+              element={<DepartmentDevices />}
             />
 
             <Route path="/app/settings" element={<Settings />} />
