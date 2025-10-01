@@ -1,11 +1,12 @@
 import { regionsData } from "./data";
 
+// changes will be done with the ? used
 export type Device = {
   id: number;
-  brand: string;
-  serialNumber: string;
+  brand?: string;
+  serialNumber?: string;
   quantity: number;
-  embosment: string;
+  embosment?: string;
 };
 
 export type Court = {
@@ -13,6 +14,12 @@ export type Court = {
   courtName: string;
   devices: Device[];
 };
+
+// export type Department = { for now, will be changed when populated
+//   id: number;
+//   departmentName: string;
+//   devices: Device[];
+// };
 
 export type CourtType = {
   id: number;
@@ -25,6 +32,19 @@ export type Region = {
   regionName: string;
   slug: string;
   courtTypes: CourtType[];
+  departments?: Department[];
+};
+
+export type DepartmentDevice = {
+  id: number;
+  deviceName: string;
+  quantity: number;
+};
+
+export type Department = {
+  id: number;
+  departmentName: string;
+  devices: DepartmentDevice[];
 };
 
 // Build lookup maps once
@@ -38,6 +58,8 @@ const courtIdToCourt = new Map<
   number,
   { regionId: number; courtTypeId: number; court: Court }
 >();
+
+// const departmentIdToDepartment = new Map<number, Department>();
 
 for (const region of regionsData as Region[]) {
   slugToRegion.set(region.slug, region);
@@ -92,4 +114,22 @@ export function getCourtByIds(
   const court = ct?.courts.find((c) => c.id === courtId);
   if (!region || !ct || !court) return undefined;
   return { region, courtType: ct, court };
+}
+
+export function listDepartmentsByRegionSlug(
+  regionSlug: string
+): { region: Region; departments: Department[] } | undefined {
+  const region = getRegionBySlug(regionSlug);
+  if (!region) return undefined;
+  return { region, departments: region.departments ?? [] };
+}
+
+export function getDepartmentByIds(
+  regionSlug: string,
+  departmentId: number
+): { region: Region; department: Department } | undefined {
+  const region = getRegionBySlug(regionSlug);
+  const department = region?.departments?.find((d) => d.id === departmentId);
+  if (!region || !department) return undefined;
+  return { region, department };
 }
