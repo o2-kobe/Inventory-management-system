@@ -38,14 +38,20 @@ const Region = () => {
         })}
       </div>
 
-      <p className="my-4">Or select departments</p>
-
-      <div className="border w-[264px] border-gray-300 shadow-md hover:bg-gray-200 cursor-pointer rounded-md p-20 gap-4 flex flex-col items-center mb-10">
-        <p>
-          <FaBuilding size={40} />
-        </p>
-        <p>Department</p>
-      </div>
+      {region?.departments && region.departments.length > 0 ? (
+        <>
+          <p className="my-4">Or select departments</p>
+          <Link
+            to={`/app/regions/${regionSlug}/departments`}
+            className="border w-[264px] border-gray-300 shadow-md hover:bg-gray-200 cursor-pointer rounded-md p-20 gap-4 flex flex-col mb-5 items-center"
+          >
+            <p>
+              <FaBuilding size={40} />
+            </p>
+            <p>Departments</p>
+          </Link>
+        </>
+      ) : null}
     </div>
   );
 };
