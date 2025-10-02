@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { getCourtTypeByIds, getRegionBySlug } from "../dataRepo";
+import CreateNewButton from "./CreateNewButton";
 
 const CourtType = () => {
   const { regionSlug, courtTypeId } = useParams();
@@ -21,9 +22,7 @@ const CourtType = () => {
           <p className="">Select a court to manage devices</p>
         </div>
 
-        <button className="px-4 cursor-pointer text-sm transition-colors duration-[0.2s] hover:bg-green-700 py-2 rounded-md bg-green-800 text-white">
-          Add New Court
-        </button>
+        <CreateNewButton type="court">Add new Court</CreateNewButton>
       </div>
 
       <ul className="mt-4 text-blue-800 space-y-2">
