@@ -5,7 +5,7 @@ import RegionsRoute from "./RegionsRoute";
 
 const SideMenu = () => {
   return (
-    <div className="px-4 py-8 border border-r-gray-300 shadow-md border-y-white hide-scrollbar overflow-y-auto flex flex-col">
+    <aside className="px-4 py-8 border border-r-gray-300 shadow-md border-y-white hide-scrollbar overflow-y-auto flex flex-col">
       <div className="flex flex-col justify-between h-full">
         <div>
           <div className="flex flex-col justify-center items-center gap-1">
@@ -48,7 +48,7 @@ const SideMenu = () => {
           <MdOutlineSettings /> Settings
         </NavLink>
       </div>
-    </div>
+    </aside>
   );
 };
 export default SideMenu;
