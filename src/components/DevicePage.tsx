@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { getCourtByIds, getCourtTypeByIds, getRegionBySlug } from "../dataRepo";
 
 import Table from "./Table";
+import CreateNewButton from "./CreateNewButton";
 
 const DevicePage = () => {
   const { regionSlug, courtTypeId, courtId } = useParams();
@@ -29,11 +30,7 @@ const DevicePage = () => {
           </p>
         </div>
 
-        <div>
-          <button className="px-4 cursor-pointer text-sm transition-colors duration-[0.2s] hover:bg-green-700 py-2 rounded-md bg-green-800 text-white">
-            Add new Equipment
-          </button>
-        </div>
+        <CreateNewButton type="equipment">Add new Equipment</CreateNewButton>
       </div>
 
       <Table devices={devices} />
