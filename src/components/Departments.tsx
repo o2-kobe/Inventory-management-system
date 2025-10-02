@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { listDepartmentsByRegionSlug } from "../dataRepo";
+import CreateNewButton from "./CreateNewButton";
 
 const Departments = () => {
   const { regionSlug } = useParams();
@@ -17,9 +18,7 @@ const Departments = () => {
           <p className="">Select a department to manage devices</p>
         </div>
 
-        <button className="px-4 cursor-pointer text-sm transition-colors duration-[0.2s] hover:bg-green-700 py-2 rounded-md bg-green-800 text-white">
-          Add new Department
-        </button>
+        <CreateNewButton>Add new Department</CreateNewButton>
       </div>
 
       <ul className="mt-4 text-blue-800 space-y-2">
