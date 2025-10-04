@@ -1,7 +1,8 @@
+import React from "react";
 import CreateNewButton from "./CreateNewButton";
 import Input from "./Input";
 
-const CourtForm = () => {
+const CourtForm = React.memo(() => {
   return (
     <form>
       <h3 className="font-semibold text-3xl mb-3">Register a new Court</h3>
@@ -21,5 +22,5 @@ const CourtForm = () => {
       </div>
     </form>
   );
-};
+});
 export default CourtForm;

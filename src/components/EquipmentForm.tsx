@@ -1,8 +1,9 @@
+import React from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Input from "./Input";
 import CreateNewButton from "./CreateNewButton";
 
-const CreateEquipmentForm = () => {
+const CreateEquipmentForm = React.memo(() => {
   return (
     <form>
       <h3 className="font-semibold text-3xl mb-3">Register a new Device</h3>
@@ -30,5 +31,5 @@ const CreateEquipmentForm = () => {
       </div>
     </form>
   );
-};
+});
 export default CreateEquipmentForm;
